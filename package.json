@@ -1,0 +1,16 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "author": "Robert Zuba",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "task1": "node --experimental-modules task1/part2.js",
+    "task2part1": "node --experimental-modules task2/part1.js",
+    "task2part2": "node --experimental-modules task2/part2.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "n-readlines": "^1.0.1"
+  }
+}
