@@ -7,7 +7,9 @@
   "scripts": {
     "task1": "node --experimental-modules task1/part2.js",
     "task2part1": "node --experimental-modules task2/part1.js",
-    "task2part2": "node --experimental-modules task2/part2.js"
+    "task2part2": "node --experimental-modules task2/part2.js",
+    "task3part1": "node --experimental-modules task3/part1.js",
+    "task3part2": "node --experimental-modules task3/part2.js"
   },
   "license": "ISC",
   "dependencies": {

@@ -8,3 +8,7 @@ export function extractOnlyNumber(text) {
 export function extractOnlyLetters(text) {
     return text.replace(/[^a-zA-Z]/g, '')
 }
+
+export function isNumber(string) {
+    return /^[0-9]*$/.test(string);
+}
