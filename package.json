@@ -13,7 +13,9 @@
     "task4part1": "node --experimental-modules task4/part1.js",
     "task4part2": "node --experimental-modules task4/part2.js",
     "task5part1": "node --experimental-modules task5/part1.js",
-    "task5part2": "node --experimental-modules task5/part2.js"
+    "task5part2": "node --experimental-modules task5/part2.js",
+    "task6part1": "node --experimental-modules task6/part1.js",
+    "task6part2": "node --experimental-modules task6/part2.js"
   },
   "license": "ISC",
   "dependencies": {
