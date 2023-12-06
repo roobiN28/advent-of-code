@@ -40,30 +40,27 @@ function isOverflow (round) {
   return false
 }
 
-while (line = broadbandLines.next()) {
-  line = line.toString('ascii')
+export function main () {
+  while (line = broadbandLines.next()) {
+    line = line.toString('ascii')
 
-  const [gameNumber, game] = splitGame(line)
+    const [gameNumber, game] = splitGame(line)
 
-  const rounds = splitRounds(game)
-  console.log(gameNumber, rounds)
+    const rounds = splitRounds(game)
+    // console.log(gameNumber, rounds)
 
-  let overflow = false
-  for (let round of rounds) {
-    overflow = isOverflow(round)
-    if (overflow) {
-      break
+    let overflow = false
+    for (let round of rounds) {
+      overflow = isOverflow(round)
+      if (overflow) {
+        break
+      }
     }
-  }
 
-  if (!overflow) {
-    counter += gameNumber
-  }
+    if (!overflow) {
+      counter += gameNumber
+    }
 
+  }
+  return counter
 }
-
-console.log('end of file.')
-const used = process.memoryUsage().heapUsed / 1024 / 1024
-console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`)
-
-console.log(counter)

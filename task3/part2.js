@@ -70,89 +70,87 @@ function isEdgeCaseWithTwoInline (index, row) {
     isNumber(row[index + 1])
 }
 
-for (iRow = 0; iRow < engine.length; iRow++) {
-  const row = engine[iRow]
-  for (let iColumn = 0; iColumn < row.length; iColumn++) {
-    const element = row[iColumn]
-    if (isGear(element)) {
-      debug.replaceElementInString(iRow, iColumn)
-      let adjustToPartNumber = 0
-      let gearRatio = 1
+export function main () {
+  for (iRow = 0; iRow < engine.length; iRow++) {
+    const row = engine[iRow]
+    for (let iColumn = 0; iColumn < row.length; iColumn++) {
+      const element = row[iColumn]
+      if (isGear(element)) {
+        debug.replaceElementInString(iRow, iColumn)
+        let adjustToPartNumber = 0
+        let gearRatio = 1
 
-      if (iColumn > 0 && isNumber(row[iColumn - 1])) {
-        const number = findNumber(row, iColumn - 1)
-        adjustToPartNumber++
-        gearRatio *= number
-        const a = findNumberStartEnd(row, iColumn - 1)
-        debug.replaceElementInString(iRow, a[0], a[1], 'm')
-      }
-
-      if (iColumn < (row.length - 1) && isNumber(row[iColumn + 1])) {
-        const number = findNumber(row, iColumn + 1)
-        adjustToPartNumber++
-        gearRatio *= number
-        const a = findNumberStartEnd(row, iColumn + 1)
-        debug.replaceElementInString(iRow, a[0], a[1], 'b')
-      }
-
-      const topRow = engine[iRow - 1]
-      if (iRow > 0 &&
-        containNumber(sliceWithBuffer(topRow, iColumn, iColumn + 1))) {
-        if (iColumn > 0 && iColumn < topRow.length && topRow[iColumn] === '.' &&
-          isNumber(topRow[iColumn - 1]) && isNumber(topRow[iColumn + 1])) {
-          adjustToPartNumber += 2
-          gearRatio *= findNumber(topRow, iColumn - 1)
-          gearRatio *= findNumber(topRow, iColumn + 1)
-          const a = findNumberStartEnd(topRow, iColumn - 1)
-          debug.replaceElementInString(iRow - 1, a[0], a[1], 'r')
-          const b = findNumberStartEnd(topRow, iColumn + 1)
-          debug.replaceElementInString(iRow - 1, b[0], b[1], 'r')
-        } else {
-          const numberColumn = findNumberColumn(topRow, iColumn)
-          const number = findNumber(topRow, numberColumn)
+        if (iColumn > 0 && isNumber(row[iColumn - 1])) {
+          const number = findNumber(row, iColumn - 1)
           adjustToPartNumber++
           gearRatio *= number
-
-          const a = findNumberStartEnd(topRow, numberColumn)
-          debug.replaceElementInString(iRow - 1, a[0], a[1], 'c')
+          const a = findNumberStartEnd(row, iColumn - 1)
+          debug.replaceElementInString(iRow, a[0], a[1], 'm')
         }
-      }
 
-      const bottomRow = engine[iRow + 1]
-      if (iRow < engine.length - 1 &&
-        containNumber(sliceWithBuffer(bottomRow, iColumn, iColumn + 1))) {
-        // special case
-        if (isEdgeCaseWithTwoInline(iColumn, bottomRow)) {
-          adjustToPartNumber += 2
-          gearRatio *= findNumber(bottomRow, iColumn - 1)
-          gearRatio *= findNumber(bottomRow, iColumn + 1)
-
-          const a = findNumberStartEnd(bottomRow, iColumn - 1)
-          debug.replaceElementInString(iRow + 1, a[0], a[1], 'r')
-          const b = findNumberStartEnd(bottomRow, iColumn + 1)
-          debug.replaceElementInString(iRow + 1, b[0], b[1], 'r')
-        } else {
-          const numberColumn = findNumberColumn(bottomRow, iColumn)
-          const number = findNumber(bottomRow, numberColumn)
+        if (iColumn < (row.length - 1) && isNumber(row[iColumn + 1])) {
+          const number = findNumber(row, iColumn + 1)
           adjustToPartNumber++
           gearRatio *= number
-
-          const a = findNumberStartEnd(bottomRow, numberColumn)
-          debug.replaceElementInString(iRow + 1, a[0], a[1], 'y')
+          const a = findNumberStartEnd(row, iColumn + 1)
+          debug.replaceElementInString(iRow, a[0], a[1], 'b')
         }
-      }
 
-      if (adjustToPartNumber === 2) {
-        counter += gearRatio
+        const topRow = engine[iRow - 1]
+        if (iRow > 0 &&
+          containNumber(sliceWithBuffer(topRow, iColumn, iColumn + 1))) {
+          if (iColumn > 0 && iColumn < topRow.length && topRow[iColumn] === '.' &&
+            isNumber(topRow[iColumn - 1]) && isNumber(topRow[iColumn + 1])) {
+            adjustToPartNumber += 2
+            gearRatio *= findNumber(topRow, iColumn - 1)
+            gearRatio *= findNumber(topRow, iColumn + 1)
+            const a = findNumberStartEnd(topRow, iColumn - 1)
+            debug.replaceElementInString(iRow - 1, a[0], a[1], 'r')
+            const b = findNumberStartEnd(topRow, iColumn + 1)
+            debug.replaceElementInString(iRow - 1, b[0], b[1], 'r')
+          } else {
+            const numberColumn = findNumberColumn(topRow, iColumn)
+            const number = findNumber(topRow, numberColumn)
+            adjustToPartNumber++
+            gearRatio *= number
+
+            const a = findNumberStartEnd(topRow, numberColumn)
+            debug.replaceElementInString(iRow - 1, a[0], a[1], 'c')
+          }
+        }
+
+        const bottomRow = engine[iRow + 1]
+        if (iRow < engine.length - 1 &&
+          containNumber(sliceWithBuffer(bottomRow, iColumn, iColumn + 1))) {
+          // special case
+          if (isEdgeCaseWithTwoInline(iColumn, bottomRow)) {
+            adjustToPartNumber += 2
+            gearRatio *= findNumber(bottomRow, iColumn - 1)
+            gearRatio *= findNumber(bottomRow, iColumn + 1)
+
+            const a = findNumberStartEnd(bottomRow, iColumn - 1)
+            debug.replaceElementInString(iRow + 1, a[0], a[1], 'r')
+            const b = findNumberStartEnd(bottomRow, iColumn + 1)
+            debug.replaceElementInString(iRow + 1, b[0], b[1], 'r')
+          } else {
+            const numberColumn = findNumberColumn(bottomRow, iColumn)
+            const number = findNumber(bottomRow, numberColumn)
+            adjustToPartNumber++
+            gearRatio *= number
+
+            const a = findNumberStartEnd(bottomRow, numberColumn)
+            debug.replaceElementInString(iRow + 1, a[0], a[1], 'y')
+          }
+        }
+
+        if (adjustToPartNumber === 2) {
+          counter += gearRatio
+        }
       }
     }
   }
+
+  // debug.show(engine)
+
+  return counter
 }
-
-debug.show(engine)
-console.log('end of file.')
-const used = process.memoryUsage().heapUsed / 1024 / 1024
-
-console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`)
-
-console.log(counter)

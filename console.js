@@ -28,6 +28,10 @@ export const color = {
   BgGray: '\x1b[100m',
 }
 
+export function log (text, c = color.FgWhite) {
+  console.log(c + text + color.FgWhite)
+}
+
 export function consoleHighlightLine (string, start, end) {
   if (end === undefined) end = start
   return string.slice(0, start) + color.FgGreen + string.slice(start, end + 1) +
@@ -46,13 +50,13 @@ export function show (table) {
         line = line + color.FgRed + el + color.FgWhite
       } else if (hi === 'b') {
         line = line + color.FgBlue + el + color.FgWhite
-      }  else if (hi === 'c') {
+      } else if (hi === 'c') {
         line = line + color.FgCyan + el + color.FgWhite
-      }  else if (hi === 'y') {
+      } else if (hi === 'y') {
         line = line + color.FgYellow + el + color.FgWhite
       } else if (hi === 'm') {
         line = line + color.FgMagenta + el + color.FgWhite
-      }  else {
+      } else {
         line += el
       }
     }
@@ -60,13 +64,13 @@ export function show (table) {
   }
 }
 
-export function replaceElementInString(row, start, end = undefined, mark='g') {
+export function replaceElementInString (row, start, end = undefined, mark = 'g') {
   const line = this[row]
-  if(end === undefined) end = start
-  this[row] = line.slice(0, start) +  mark.repeat(end-start+1) + line.slice(end + 1, line.length)
+  if (end === undefined) end = start
+  this[row] = line.slice(0, start) + mark.repeat(end - start + 1) + line.slice(end + 1, line.length)
 }
 
-export function createDebugTable() {
+export function createDebugTable () {
   const debug = []
   debug.replaceElementInString = replaceElementInString
   debug.show = show

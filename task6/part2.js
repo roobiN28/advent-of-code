@@ -1,8 +1,7 @@
 import LineByLineReader from 'n-readlines'
 
-console.time('Execution Time')
 const broadbandLines = new LineByLineReader('task6/input.txt')
-let points = 1
+let points = 0
 let race = {}
 
 function loadRaces () {
@@ -23,15 +22,12 @@ function countDistance (holdTime, raceTime) {
   return (raceTime - holdTime) * holdTime
 }
 
-for (let holdTime = 0; holdTime <= race.time; holdTime++) {
-  if (countDistance(holdTime, race.time) > race.distance) {
-    points++
+export function main () {
+
+  for (let holdTime = 0; holdTime <= race.time; holdTime++) {
+    if (countDistance(holdTime, race.time) > race.distance) {
+      points++
+    }
   }
+  return points
 }
-
-console.log('end of file.')
-const used = process.memoryUsage().heapUsed / 1024 / 1024
-console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`)
-
-console.log(points)
-console.timeEnd('Execution Time')

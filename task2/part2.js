@@ -37,37 +37,35 @@ function fewer (round) {
   return false
 }
 
-while (line = broadbandLines.next()) {
-  line = line.toString('ascii')
+export function main () {
+  while (line = broadbandLines.next()) {
+    line = line.toString('ascii')
 
-  const [gameNumber, game] = splitGame(line)
+    const [gameNumber, game] = splitGame(line)
 
-  const rounds = splitRounds(game)
-  console.log(gameNumber, rounds)
+    const rounds = splitRounds(game)
+    // console.log(gameNumber, rounds)
 
-  const fewer = {
-    green: 0,
-    red: 0,
-    blue: 0,
+    const fewer = {
+      green: 0,
+      red: 0,
+      blue: 0,
+    }
+    for (let round of rounds) {
+      if (round.green && fewer.green < round.green) {
+        fewer.green = round.green
+      }
+      if (round.blue && fewer.blue < round.blue) {
+        fewer.blue = round.blue
+      }
+      if (round.red && fewer.red < round.red) {
+        fewer.red = round.red
+      }
+    }
+
+    counter += fewer['blue'] * fewer['red'] * fewer['green']
+
   }
-  for (let round of rounds) {
-    if (round.green && fewer.green < round.green) {
-      fewer.green = round.green
-    }
-    if (round.blue && fewer.blue < round.blue) {
-      fewer.blue = round.blue
-    }
-    if (round.red && fewer.red < round.red) {
-      fewer.red = round.red
-    }
-  }
 
-  counter += fewer['blue'] * fewer['red'] * fewer['green']
-
+  return counter
 }
-
-console.log('end of file.')
-const used = process.memoryUsage().heapUsed / 1024 / 1024
-console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`)
-
-console.log(counter)

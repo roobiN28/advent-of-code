@@ -43,7 +43,6 @@ almanac.forEach((innerArray) => {
   innerArray.sort((a, b) => a.destination - b.destination)
 })
 
-
 function checkFromEnd (location) {
   let reverse = location
   for (let i = 0; i < almanac.length; i++) {
@@ -83,9 +82,6 @@ function checkAllLocations () {
   }
 }
 
-console.log('end of file.')
-const used = process.memoryUsage().heapUsed / 1024 / 1024
-console.log(
-  `The script uses approximately ${Math.round(used * 100) / 100} MB`)
-
-console.log( checkAllLocations())
+export function main () {
+  return checkAllLocations()
+}
