@@ -1,7 +1,6 @@
 import LineByLineReader from 'n-readlines'
 
 const broadbandLines = new LineByLineReader('task5/input.txt')
-let counter = 0
 
 let seeds
 let seedsCopy

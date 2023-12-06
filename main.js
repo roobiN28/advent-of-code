@@ -37,19 +37,7 @@ function before () {
 function after () {
   performance.mark('end')
   const memory = Math.round(process.memoryUsage().heapUsed / 1024 / 1024 * 100) / 100
-
-  let timeDiff = performance.measure('', 'start', 'end')
-  timeDiff = timeDiff.duration
-  let time
-  if (timeDiff < 1000) {
-    time = timeDiff.toFixed(2) + ' milliseconds'
-  } else if (timeDiff < 60 * 1000) {
-    time = +' seconds'
-  } else if (timeDiff < 60 * 60 * 1000) {
-    time = (timeDiff / (60 * 1000)).toFixed(2) + ' minutes'
-  } else {
-    time = (timeDiff / (60 * 60 * 1000)).toFixed(2) + ' hours'
-  }
+  let timeDiff = performance.measure('', 'start', 'end').duration
 
   log(`Memory: ${memory} MB ${(timeDiff / 1000).toFixed(2)}s\n`, color.FgGray)
 }

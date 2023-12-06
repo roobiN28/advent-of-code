@@ -2,7 +2,6 @@ import LineByLineReader from 'n-readlines'
 
 const broadbandLines = new LineByLineReader('task6/input.txt')
 let points = 1
-let line
 const races = []
 
 function loadRaces () {

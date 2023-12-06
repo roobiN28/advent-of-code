@@ -24,24 +24,11 @@ function splitRounds (game) {
 
 let line
 
-function fewer (round) {
-  if (round['green'] > GREEN) {
-    return true
-  }
-  if (round['red'] > RED) {
-    return true
-  }
-  if (round['blue'] > BLUE) {
-    return true
-  }
-  return false
-}
-
 export function main () {
   while (line = broadbandLines.next()) {
     line = line.toString('ascii')
 
-    const [gameNumber, game] = splitGame(line)
+    const [, game] = splitGame(line)
 
     const rounds = splitRounds(game)
     // console.log(gameNumber, rounds)

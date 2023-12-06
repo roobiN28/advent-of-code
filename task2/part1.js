@@ -34,10 +34,8 @@ function isOverflow (round) {
   if (round['red'] > RED) {
     return true
   }
-  if (round['blue'] > BLUE) {
-    return true
-  }
-  return false
+  return round['blue'] > BLUE;
+
 }
 
 export function main () {
