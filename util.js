@@ -21,7 +21,7 @@ export function readFileToTable (file) {
   const table = []
   let line
   while (line = broadbandLines.next()) {
-    table.push(line.toString('ascii').split(''))
+    table.push(line.toString('ascii').replace('\\r', '').split(''))
   }
   return table
 }
@@ -31,7 +31,7 @@ export function readFileToTableOfStrings (file) {
   const table = []
   let line
   while (line = broadbandLines.next()) {
-    table.push(line.toString('ascii'))
+    table.push(line.toString('ascii').replace('\r', ''))
   }
   return table
 }
