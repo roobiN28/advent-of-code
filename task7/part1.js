@@ -46,7 +46,6 @@ function findSame (string, same) {
   for (let i = 0; i < string.length; i++) {
     let count = 1
     for (let j = i + 1; j < string.length; j++) {
-      // console.log(string[i], string[j])
       if (string[i] === string[j]) {
         count++
       }
@@ -108,11 +107,8 @@ export function main () {
   let multiplier = game.length
   game.sort(sortCards)
   for (let hand of game) {
-    console.log(hand, determineType(hand.cards), multiplier, hand.bid)
     result += multiplier * hand.bid
     multiplier--
   }
   return result
 }
-
-// 247818477 to low

@@ -26,10 +26,6 @@ function multipleLCM (arr) {
   return result
 }
 
-function delay (time) {
-  return new Promise(resolve => setTimeout(resolve, time))
-}
-
 function parseRow (row) {
   const split1 = row.split(' = ')
   const split2 = split1[1].replace('(', '').replace(')', '').split(', ')
@@ -52,7 +48,7 @@ function generateMap () {
   }
 
   const fillNodeForExisting = (newNode) => {
-    for (const [key, node] of Object.entries(all)) {
+    for (const [, node] of Object.entries(all)) {
       if (node.left.value === newNode.value) {
         node.left = newNode
       }
@@ -97,13 +93,9 @@ export function main () {
     }
   }
 
-  for (const [key, value] of Object.entries(numbers)) {
-    console.log(value)
-  }
-
-  const allFIne = () => {
+  const allFine = () => {
     let fine = true
-    for (const [key, value] of Object.entries(numbers)) {
+    for (const [, value] of Object.entries(numbers)) {
       if (value === -1) {
         fine = false
       }
@@ -113,7 +105,7 @@ export function main () {
 
   const numberstoarray = () => {
     let num = []
-    for (const [key, value] of Object.entries(numbers)) {
+    for (const [, value] of Object.entries(numbers)) {
       num.push(value)
     }
     return num
@@ -123,11 +115,11 @@ export function main () {
   while (true) {
     for (let instruction of instructions) {
       let count = 0
-      for (const [key, node] of Object.entries(nodes)) {
+      for (const [key,] of Object.entries(nodes)) {
         nodes[key] = instruction === 'R' ? nodes[key].right : nodes[key].left
         if (nodes[key].value.at(2) === 'Z') {
           numbers[key] = steps
-          if (allFIne()) {
+          if (allFine()) {
             return multipleLCM(numberstoarray())
           }
           count++

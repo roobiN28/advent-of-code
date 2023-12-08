@@ -1,9 +1,10 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-await run(8, 1)
+// run(8, 1)
 
-// runAll()
+await runAll()
+
 async function run (task, part) {
   const { main } = await import((`./task${task}/part${part}.js`))
 
@@ -14,7 +15,15 @@ async function run (task, part) {
 }
 
 async function runAll () {
-  await run(1, 2)
+  for (let i = 1; i < 30; i++) {
+    try {
+      await run(i, 1)
+      await run(i, 2)
+    } catch (e) {
+      break
+    }
+  }
+  /*await run(1, 2)
   await run(2, 1)
   await run(2, 2)
   await run(3, 1)
@@ -27,6 +36,8 @@ async function runAll () {
   await run(6, 2)
   await run(7, 1)
   await run(7, 2)
+  await run(8, 1)
+  await run(8, 2)*/
 }
 
 function before () {

@@ -25,7 +25,7 @@ function generateMap () {
   }
 
   const fillNodeForExisting = (newNode) => {
-    for (const [key, node] of Object.entries(all)) {
+    for (const [, node] of Object.entries(all)) {
       if (node.left.value === newNode.value) {
         node.left = newNode
       }
