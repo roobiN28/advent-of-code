@@ -29,7 +29,12 @@ export const color = {
 }
 
 export function log (text, c = color.FgWhite) {
-  console.log(c + text + color.FgWhite)
+  if(typeof text === 'object') {
+    console.log(c + JSON.stringify(text) + color.FgWhite+ color.BgBlack)
+
+  } else {
+    console.log(c + text + color.FgWhite)
+  }
 }
 
 export function consoleHighlightLine (string, start, end) {

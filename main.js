@@ -1,7 +1,7 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-await run(7, 2)
+await run(8, 1)
 
 // runAll()
 async function run (task, part) {
