@@ -16,12 +16,12 @@ export function isNumber (string) {
   return /^[0-9]*$/.test(string)
 }
 
-export function readFileToTable (file) {
+export function readFileToTable (file, separator = '') {
   const broadbandLines = new LineByLineReader(file)
   const table = []
   let line
   while (line = broadbandLines.next()) {
-    table.push(line.toString('ascii').replace('\\r', '').split(''))
+    table.push(line.toString('ascii').replace('\r', '').split(separator))
   }
   return table
 }

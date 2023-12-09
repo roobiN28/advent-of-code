@@ -1,7 +1,7 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-// run(8, 1)
+// run(9, 2)
 
 await runAll()
 
@@ -12,32 +12,37 @@ async function run (task, part) {
   const result = main()
   log(`Task:${task}, Part:${part}, Result: ` + result, color.FgMagenta)
   after()
+  return result
 }
 
 async function runAll () {
-  for (let i = 1; i < 30; i++) {
-    try {
-      await run(i, 1)
-      await run(i, 2)
-    } catch (e) {
-      break
+  for (let task = 1; task < 30; task++) {
+    for (let part = 1; part <= 2; part++) {
+      try {
+
+        if (await run(task, part) !== correctResults()[task][part]) {
+          log(`Task:${task}, Part:${part},Correct: ` + correctResults()[task][part] + '\n\n', color.FgRed)
+        }
+
+      } catch (e) {
+        break
+      }
     }
   }
-  /*await run(1, 2)
-  await run(2, 1)
-  await run(2, 2)
-  await run(3, 1)
-  await run(3, 2)
-  await run(4, 1)
-  await run(4, 2)
-  await run(5, 1)
-  await run(5, 2)
-  await run(6, 1)
-  await run(6, 2)
-  await run(7, 1)
-  await run(7, 2)
-  await run(8, 1)
-  await run(8, 2)*/
+}
+
+function correctResults () {
+  return {
+    1: { 1: 54824, 2: 54824 },
+    2: { 1: 2006, 2: 84911 },
+    3: { 1: 537811, 2: 75741499 },
+    4: { 1: 25010, 2: 9924412 },
+    5: { 1: 88151870, 2: 2008785 },
+    6: { 1: 5133600, 2: 40651271 },
+    7: { 1: 247961593, 2: 248750699 },
+    8: { 1: 21797, 2: 23977527174353 },
+    9: { 1: 1972648895, 2: 919 },
+  }
 }
 
 function before () {
