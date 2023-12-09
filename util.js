@@ -21,7 +21,13 @@ export function readFileToTable (file, separator = '') {
   const table = []
   let line
   while (line = broadbandLines.next()) {
-    table.push(line.toString('ascii').replace('\r', '').split(separator))
+    table.push(
+      line
+      .toString('ascii')
+      .replace('\r', '')
+      .split(separator)
+      .map( el => isNaN(el) ? el : Number(el))
+    )
   }
   return table
 }

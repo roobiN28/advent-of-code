@@ -1,9 +1,9 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-// run(9, 2)
+run(9, 1)
 
-await runAll()
+// await runAll()
 
 async function run (task, part) {
   const { main } = await import((`./task${task}/part${part}.js`))

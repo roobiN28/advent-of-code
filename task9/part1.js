@@ -1,9 +1,6 @@
 import { readFileToTable } from '../util.js'
 
 const table = readFileToTable('task9/input.txt', ' ')
-for (let i = 0; i < table.length; i++) {
-  table[i] = table[i].map(t => Number(t))
-}
 
 function extrapolate (sequence) {
   if (sequence.every(value => value === 0)) {
