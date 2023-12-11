@@ -5,7 +5,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "main": "node --experimental-modules main"
+    "main": "node --stack-size=9999999 --experimental-modules main"
   },
   "license": "ISC",
   "dependencies": {
