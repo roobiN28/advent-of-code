@@ -147,9 +147,7 @@ export function main () {
       }
     }
   }
-  debug.show(xo)
+  // debug.show(xo)
 
   return result
 }
-
-// result 429
