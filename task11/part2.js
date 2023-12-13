@@ -91,21 +91,26 @@ function calculateAllGalaxiesDistance(g, ge) {
     for (let g2 = g1 + 1; g2 < g.length; g2++) {
       const distance = calculateDistance(g[g1], g[g2])
       const distanceExpanded = calculateDistance(ge[g1], ge[g2])
-      all +=distance + ((distanceExpanded - distance) * TIMES_LARGER - 1)
+      all +=distance + ((distanceExpanded - distance) * (TIMES_LARGER-1))
     }
   }
   return all
 }
 
 export function main () {
-  const debug = copyDebug(universe)
-  debugColorLineWithDots(debug, universe)
+  // const debug = copyDebug(universe)
+  // debugColorLineWithDots(debug, universe)
   // debug.show(universe)
 
   expandUniverse()
 
+  // const debugExpanded = copyDebug(universeExpanded)
+  // debugColorLineWithDots(debugExpanded, universeExpanded)
+  // debugExpanded.show(universeExpanded)
+
   const galaxies = findGalaxies(universe)
   const galaxiesExpanded = findGalaxies(universeExpanded)
+
 
   return calculateAllGalaxiesDistance(galaxies, galaxiesExpanded)
 }
