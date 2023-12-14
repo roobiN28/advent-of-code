@@ -49,3 +49,7 @@ export function readFileToTableOfStrings (file) {
   }
   return table
 }
+
+export function percentage (number, numberAll) {
+  return ((number / numberAll) * 100).toFixed(3)
+}
