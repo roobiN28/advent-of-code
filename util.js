@@ -1,4 +1,5 @@
 import LineByLineReader from 'n-readlines'
+import { replaceElementInString, show } from './console.js'
 
 export function containNumber (text) {
   return /\d/.test(text)
@@ -24,6 +25,14 @@ export function reverseString(str) {
   return newString;
 }
 
+function isNotIn (x, y) {
+  return x < 0 || x >= this.length || y < 0 || y >= this[0].length
+}
+
+function isIn (x, y) {
+  return x >= 0 && x < this.length && y >= 0 && y < this[0].length
+}
+
 export function readFileToTable (file, separator = '') {
   const broadbandLines = new LineByLineReader(file)
   const table = []
@@ -37,6 +46,8 @@ export function readFileToTable (file, separator = '') {
       .map( el => isNaN(el) ? el : Number(el))
     )
   }
+  table.isIn = isIn
+  table.isNotIn = isNotIn
   return table
 }
 
