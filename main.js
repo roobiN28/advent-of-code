@@ -1,7 +1,7 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-run(18, 2)
+run(19, 2)
 // double for shortcuts
 // await runAll()
 
@@ -51,6 +51,7 @@ function correctResults () {
     16: { 1: 8146, 2: 8358 },
     17: { 1: 0, 2: 0 },
     18: { 1: 48503, 2: 148442153147147 },
+    19: { 1: 446517, 2: 0 },
   }
 }
 

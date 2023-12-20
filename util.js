@@ -1,5 +1,4 @@
 import LineByLineReader from 'n-readlines'
-import { replaceElementInString, show } from './console.js'
 
 export function containNumber (text) {
   return /\d/.test(text)
@@ -17,12 +16,12 @@ export function isNumber (string) {
   return /^[0-9]*$/.test(string)
 }
 
-export function reverseString(str) {
-  let newString = "";
+export function reverseString (str) {
+  let newString = ''
   for (let i = str.length - 1; i >= 0; i--) {
-    newString += str[i];
+    newString += str[i]
   }
-  return newString;
+  return newString
 }
 
 function isNotIn (x, y) {
@@ -39,11 +38,7 @@ export function readFileToTable (file, separator = '') {
   let line
   while (line = broadbandLines.next()) {
     table.push(
-      line
-      .toString('ascii')
-      .replace('\r', '')
-      .split(separator)
-      .map( el => isNaN(el) ? el : Number(el))
+      line.toString('ascii').replace('\r', '').split(separator).map(el => isNaN(el) ? el : Number(el)),
     )
   }
   table.isIn = isIn
@@ -63,4 +58,20 @@ export function readFileToTableOfStrings (file) {
 
 export function percentage (number, numberAll) {
   return ((number / numberAll) * 100).toFixed(3)
+}
+
+export function deepCopy (obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj
+  }
+
+  let clonedObject = Array.isArray(obj) ? [] : {}
+
+  for (let key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      clonedObject[key] = deepCopy(obj[key])
+    }
+  }
+
+  return clonedObject
 }
