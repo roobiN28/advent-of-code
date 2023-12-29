@@ -1,9 +1,9 @@
 import { color, log } from './console.js'
 import { performance } from 'perf_hooks'
 
-// run(20, 2)
+run(22, 1)
 // double for shortcuts
-await runAll()
+// await runAll()
 
 async function run (task, part) {
   const { main } = await import((`./task${task}/part${part}.js`))
@@ -53,6 +53,8 @@ function correctResults () {
     18: { 1: 48503, 2: 148442153147147 },
     19: { 1: 446517, 2: 130090458884662 },
     20: { 1: 808146535, 2: 224602953547789 },
+    21: { 1: 3578, 2: 0 },
+    22: { 1: 471, 2: 68525 },
   }
 }
 
